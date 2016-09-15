@@ -7,6 +7,8 @@ import java.util.Scanner;
 public class Main
 
 {
+	// public Scanner sc = new Scanner(System.in);
+
 	public static void pp1(double x)
 	{
 		System.out.println("Zadnie 1 \n");
@@ -205,11 +207,6 @@ public class Main
 
 	public static void pp8()
 	{
-
-	}
-
-	public static void main(String[] args)
-	{
 		int a = 0;
 		int b = 0;
 
@@ -221,7 +218,185 @@ public class Main
 			System.out.println("Podaj drug¹:");
 			b = Integer.parseInt(sc.nextLine());
 		} while (a > b);
-		
-		
+
+	}
+
+	public static void pp10()
+	{
+		Random rnd = new Random();
+		int a = rnd.nextInt(21);
+
+		boolean czyPrawda = false;
+		Scanner sc = new Scanner(System.in);
+
+		do
+		{
+			System.out.println("Podaj pewsza liczbe");
+			int x1 = Integer.parseInt(sc.nextLine());
+			System.out.println("Podaj druga");
+			int x2 = Integer.parseInt(sc.nextLine());
+			double srednia = (x1 + x1) / 2;
+
+			if (Math.abs(srednia - a) < 2)
+			{
+				czyPrawda = true;
+			}
+		} while (czyPrawda = false);
+		System.out.println("Hura!");
+	}
+
+	public static void pp11()
+	{
+		double min = -0.45;
+		double max = 6.24;
+
+		Random rnd = new Random();
+		double los = min + (max - min) * rnd.nextDouble();
+
+		int ile = 0;
+
+		for (int i = 0; i < los; i++)
+		{
+			ile = i;
+		}
+
+		System.out.println(los);
+		System.out.println(ile);
+
+	}
+
+	public static void tab01()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Podaj rozmiar tablicy");
+		int a = Integer.parseInt(sc.nextLine());
+		int[] tab = new int[a];
+
+		for (int i = 0; i < tab.length; i++)
+		{
+			Random rnd = new Random();
+			tab[i] = 10 + rnd.nextInt(41);
+		}
+
+		int sum = 0;
+		for (int i = 0; i < tab.length; i++)
+		{
+			if ((tab[i] % 5) % 2 == 0)
+			{
+				sum += tab[i];
+				System.out.print(tab[i] + "\t");
+			}
+		}
+		System.out.println("\nSuma " + sum);
+
+	}
+
+	public static void tab02()
+	{
+		Random rnd = new Random();
+		int a = 9 + rnd.nextInt(30);
+		int[] tab = new int[a];
+
+		for (int i = 0; i < tab.length; i++)
+		{
+			tab[i] = rnd.nextInt(46) - 30;
+		}
+
+		for (int i : tab)
+		{
+			System.out.print(i + "\t");
+		}
+		System.out.println("----------------------------");
+
+		for (int i = 0; i < tab.length; i++)
+		{
+			if (tab[i] < 0)
+			{
+				tab[i] = Math.abs(tab[i]);
+			} else
+			{
+				; // wartosc odwrotna...? tablica intow..?
+			}
+		}
+
+		for (int i : tab)
+		{
+			System.out.print(i + "\t");
+		}
+
+	}
+
+	public static void tab03()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Podaj rozmiar");
+		int rozmiar = Integer.parseInt(sc.nextLine());
+
+		double[] tab = new double[rozmiar];
+
+		for (int i = 0; i < tab.length; i++)
+		{
+			System.out.println("Podaj " + (i + 1) + "¹ wartoœæ z " + tab.length + "iu");
+			tab[i] = Double.parseDouble(sc.nextLine());
+		}
+
+		double sum = 0;
+
+		for (int i = 0; i < tab.length; i++)
+		{
+			sum += tab[i];
+		}
+		double x = ((sum / tab.length) * 2) * 0.1;
+
+		for (int i = 0; i < tab.length; i++)
+		{
+			tab[i] = tab[i] + x;
+		}
+
+		for (double d : tab)
+		{
+			System.out.println(d + "\t");
+		}
+	}
+
+	public static void tab04()
+	{
+		Random rnd = new Random();
+		int dim = 10 + rnd.nextInt(36);
+		int[] tab = new int[dim];
+
+		for (int i = 0; i < tab.length; i++)
+		{
+			tab[i] = 2 + rnd.nextInt(39);
+		}
+
+		int a, b;
+		do
+		{
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Podaj dwie liczby:\nPodaj pierwsza:");
+			a = Integer.parseInt(sc.nextLine());
+			System.out.println("Podaj druga:");
+			b = Integer.parseInt(sc.nextLine());
+		} while (a > b);
+
+		int sum = 0;
+		int licznik = 0;
+		System.out.println("a= " + a + " b= " + b);
+		for (int i = 0; i < tab.length; i++)
+		{
+			if (tab[i] >= a && tab[i] <= b)
+			{
+				System.out.print(tab[i] + "\t");
+				sum += tab[i];
+				licznik++;
+			}
+		}
+		double avg = sum / licznik;
+	}
+
+	public static void main(String[] args)
+	{
+		tab04();
 	}
 }
