@@ -1,4 +1,6 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
@@ -382,21 +384,156 @@ public class Main
 
 		int sum = 0;
 		int licznik = 0;
-		System.out.println("a= " + a + " b= " + b);
+		// System.out.println("a= " + a + " b= " + b);
 		for (int i = 0; i < tab.length; i++)
 		{
 			if (tab[i] >= a && tab[i] <= b)
 			{
-				System.out.print(tab[i] + "\t");
+				// System.out.print(tab[i] + "\t");
 				sum += tab[i];
 				licznik++;
 			}
 		}
 		double avg = sum / licznik;
+		System.out.println("Srednia = " + avg);
+	}
+
+	/*
+	 * Pobierz od u¿ytkownika rozmiar oraz elementy tablicy typu int. Oblicz,
+	 * ile w tablicy jest elementów, które s¹ dzielnikami liczby, któr¹
+	 * wczeœniej wylosujesz z przedzia³u <5, 100>.
+	 */
+	public static void tab05()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Podaj rozmiar");
+		int rozmiar = Integer.parseInt(sc.nextLine());
+
+		int[] tab = new int[rozmiar];
+
+		for (int i = 0; i < tab.length; i++)
+		{
+			System.out.println("Podaj " + (i + 1) + "¹ wartoœæ z " + tab.length + "iu");
+			tab[i] = Integer.parseInt(sc.nextLine());
+		}
+
+		int licznik = 0;
+		Random rnd = new Random();
+		int x = 5 + rnd.nextInt(96);
+		for (int i = 0; i < tab.length; i++)
+		{
+			if (tab[i] % x == 0)
+			{
+				licznik++;
+			}
+		}
+		System.out.println(licznik + " elementow jest dzielnikami liczby " + x);
+	}
+
+	/*
+	 * Pobierz od u¿ytkownika rozmiar tablicy i utwórz tablicê elementów typu
+	 * int. Elementy tablicy losujesz z przedzia³u <-10, 20>, je¿eli element
+	 * tablicy znajduje siê pod indeksem parzystym lub z przedzia³u <30,50>,
+	 * je¿eli element tablicy znajduje siê pod indeksem nieparzystym. Oblicz
+	 * sumê elementów tablicy, które dziel¹ siê przez indeks, pod którym siê
+	 * znajduj¹.
+	 */
+	public static void tab06()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Podaj rozmiar");
+		int rozmiar = Integer.parseInt(sc.nextLine());
+
+		int[] tab = new int[rozmiar];
+
+		Random rnd = new Random();
+		for (int i = 0; i < tab.length; i++)
+		{
+			if (i % 2 == 0)
+			{
+				tab[i] = rnd.nextInt(31) - 10;
+			} else
+			{
+				tab[i] = 30 + rnd.nextInt(81);
+			}
+		}
+		int sum = 0;
+		for (int i = 0; i < tab.length; i++)
+		{
+			if (tab[i] % i == 0)
+			{
+				sum += tab[i];
+			}
+		}
+	}
+
+	/*
+	 * Rozmiar oraz elementy tablicy s¹ losowane z przedzia³u <10,30>. Wypisz te
+	 * elementy tablicy, które przy dzieleniu przez 5 daj¹ resztê, która jest
+	 * wiêksza od ostatniej cyfry dzielonego elementu tablicy.
+	 */
+
+	public static void tab07()
+	{
+		Random rnd = new Random();
+		int dim = 10 + rnd.nextInt(21);
+
+		double[] tab = new double[dim];
+
+		double min = 10;
+		double max = 30;
+
+		for (int i = 0; i < tab.length; i++)
+		{
+			double x = min + (max - min) * rnd.nextDouble();
+		}
+
+		for (int i = 0; i < tab.length; i++)
+		{
+			if (tab[i] % 5 > tab[i] % 10)
+			{
+				System.out.println(tab[i] + "\t");
+			}
+		}
+	}
+
+	/*
+	 * Rozmiar tablicy losowany jest z przedzia³u <4, 10>. Pobieraj od
+	 * u¿ytkownika elementy tablicy dot¹d, dopóki ka¿dy kolejny element tablicy,
+	 * pocz¹wszy od drugiego, nie bêdzie wiêkszy od elementu poprzedniego.
+	 * Wypisz elementy otrzymanej tablicy.
+	 */
+
+	public static void tab08()
+	{
+		Random rnd = new Random();
+		int dim = 4 + rnd.nextInt(15);
+
+		int[] tab = new int[dim];
+		
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Podaj pierwsza liczbe:");
+		tab[0] = Integer.parseInt(sc.nextLine());
+		
+		for (int i = 0; i < tab.length - 1; i++)
+		{
+			do
+			{
+				System.out.println("Podaj nastepna liczbe:");
+				tab[i + 1] = Integer.parseInt(sc.nextLine());
+			}
+			while(tab[i] >= tab[i + 1]);
+		}
+		
+		for (int i : tab)
+		{
+			System.out.println(i + "\t");
+		}
+
 	}
 
 	public static void main(String[] args)
 	{
-		tab04();
+		tab08();
 	}
 }
