@@ -1,10 +1,12 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Main
 
@@ -510,21 +512,20 @@ public class Main
 		int dim = 4 + rnd.nextInt(15);
 
 		int[] tab = new int[dim];
-		
+
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Podaj pierwsza liczbe:");
 		tab[0] = Integer.parseInt(sc.nextLine());
-		
+
 		for (int i = 0; i < tab.length - 1; i++)
 		{
 			do
 			{
 				System.out.println("Podaj nastepna liczbe:");
 				tab[i + 1] = Integer.parseInt(sc.nextLine());
-			}
-			while(tab[i] >= tab[i + 1]);
+			} while (tab[i] <= tab[i + 1]);
 		}
-		
+
 		for (int i : tab)
 		{
 			System.out.println(i + "\t");
@@ -532,8 +533,442 @@ public class Main
 
 	}
 
+	/*
+	 * Rozmiar tablicy losowany jest z przedzia³u <9, 33>. Losuj kolejne
+	 * elementy tablicy z przedzia³u <2, 30> dopóki nie bêd¹ liczb¹ podzieln¹
+	 * przez 3.
+	 */
+	public static void tab09()
+	{
+		Random rnd = new Random();
+		int dim = 9 + rnd.nextInt(43);
+
+		int[] tab = new int[dim];
+
+		for (int i = 0; i < tab.length; i++)
+		{
+			do
+			{
+				tab[i] = 2 + rnd.nextInt(33);
+			} while (tab[i] % 3 != 0);
+		}
+
+	}
+
+	/*
+	 * Rozmiar tablicy pobierany jest od u¿ytkownika. Elementy tablicy s¹
+	 * losowane z przedzia³u <a,b>. Liczby a i b to wartoœci typu int pobierane
+	 * od u¿ytkownika, dopóki nie bêdzie spe³niony warunek a < b. Wypisz z
+	 * tablicy wszystkie te elementy, które posiadaj¹ parzysty indeks i s¹
+	 * podzielne przez wartoœæ wyra¿enia b – a
+	 */
+	public static void tab10()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Podaj wymiar");
+		int dim = Integer.parseInt(sc.nextLine());
+
+		int[] tab = new int[dim];
+
+		Random rnd = new Random();
+
+		int a, b;
+
+		do
+		{
+			System.out.println("Podaj przedzial:\nPodaj a:");
+			a = Integer.parseInt(sc.nextLine());
+			System.out.println("Podaj b:");
+			b = Integer.parseInt(sc.nextLine());
+
+		} while (a >= b);
+
+		for (int i = 0; i < tab.length; i++)
+		{
+			tab[i] = a + rnd.nextInt(b + a + 1);
+		}
+
+		for (int i = 0; i < tab.length; i++)
+		{
+			if (i % 2 == 0 && tab[i] % (b - a) == 0)
+			{
+				System.out.println(tab[i] + "\t");
+			}
+		}
+
+	}
+
+	/*
+	 * Pobieraj od u¿ytkownika napis, dopóki nie bêdzie sk³ada³ siê z samych
+	 * du¿ych liter. PrzeprowadŸ analizê pobranego napisu: a) Zlicz, ile w
+	 * napisie znajduje siê znaków, których kod ASCII posiada nieparzyst¹ cyfrê
+	 * jednoœci b) Oblicz sumê kodów ASCII znaków znajduj¹cych siê na parzystych
+	 * indeksach w napisie. Nastêpnie znajdŸ pierwsz¹ liczbê z przedzia³u <65,
+	 * 90>, która jest dzielnikiem wyznaczonej wczeœniej sumy. Bêdzie to kod
+	 * ASCII jednej z du¿ych liter alfabetu. Zlicz, ile w napisie wystêpuje
+	 * liter wiêkszych od wyznaczonej litery.
+	 */
+
+	public static void nap1()
+	{
+		Scanner sc = new Scanner(System.in);
+		String nap;
+		do
+		{
+			System.out.println("Podaj napis:");
+			nap = sc.nextLine();
+		} while (!nap.matches("[A-Z]+"));
+
+		// a)
+		int licznik = 0;
+		for (int i = 0; i < nap.length(); i++)
+		{
+			if ((nap.charAt(i) % 10) % 2 != 0)
+			{
+				licznik += nap.charAt(i);
+			}
+		}
+
+		// b
+		int sum = 0;
+		for (int i = 0; i < nap.length(); i++)
+		{
+			if (i % 2 == 0)
+			{
+				sum += nap.charAt(i);
+			}
+		}
+
+		int dzielnik = 0;
+		for (int i = 65; i < 90; i++)
+		{
+			if (sum % i == 0)
+			{
+				dzielnik = i;
+			}
+		}
+
+		int licznik2 = 0;
+		for (int i = 0; i < nap.length(); i++)
+		{
+			if (nap.charAt(i) > dzielnik)
+			{
+				licznik2++;
+			}
+		}
+
+	}
+
+	/*
+	 * Zad 2 Pobierz od u¿ytkownika dwa napisy. Wszystkie spó³g³oski z
+	 * pierwszego napisu zast¹p samog³osk¹, która jako pierwsza, pocz¹wszy od
+	 * indeksu o numerze 0, pojawi³a siê w napisie drugim. Je¿eli w drugim
+	 * napisie nie wyst¹pi³a samog³oska wyœwietl komunikat NIEPRAWID£OWE DANE
+	 * WEJŒCIOWE.
+	 */
+
+	public static void nap02()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Podaj pierwszy napis");
+		String nap1 = sc.nextLine();
+		System.out.println("Podaj drugi napis");
+		String nap2 = sc.nextLine();
+
+		char samogloska = ' ';
+		boolean czySamogloska = true;
+		for (int i = 0; i < nap2.length(); i++)
+		{
+			char z = Character.toLowerCase(nap2.charAt(i));
+
+			if (z == 'a' || z == 'e' || z == 'i' || z == 'o' || z == 'u' || z == 'y')
+			{
+				samogloska = z;
+				czySamogloska = true;
+				break;
+			} else
+			{
+				czySamogloska = false;
+			}
+		}
+
+		if (czySamogloska == false)
+		{
+			System.out.println("NIEPRAWID£OWE DANE WEJŒCIOWE");
+		}
+
+		System.out.println("samogloska: " + samogloska);
+
+		StringBuilder sb = new StringBuilder(nap1);
+		for (int i = 0; i < nap1.length(); i++)
+		{
+			char z = Character.toLowerCase(nap1.charAt(i));
+
+			if (!(z == 'a' || z == 'e' || z == 'i' || z == 'o' || z == 'u' || z == 'y'))
+			{
+				sb.setCharAt(i, samogloska);
+			}
+		}
+
+		System.out.println("wynik: " + sb.toString());
+	}
+
+	/*
+	 * Zad 3 Pobierz od u¿ytkownika napis i wykonaj zestawienie, w którym
+	 * wypiszesz, ile w napisie jest ma³ych liter, du¿ych liter oraz cyfr.
+	 */
+
+	public static void nap03()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Podaj napis");
+		String nap1 = sc.nextLine();
+
+		int duze = 0;
+		int male = 0;
+		int liczba = 0;
+
+		for (int i = 0; i < nap1.length(); i++)
+		{
+			char z = nap1.charAt(i);
+
+			if (Character.isUpperCase(nap1.charAt(i)))
+			{
+				duze++;
+			}
+
+			if (Character.isLowerCase(z))
+			{
+				male++;
+			}
+
+			if (Character.isDigit(z))
+			{
+				liczba++;
+			}
+		}
+
+		System.out.println("Duze " + duze + ", male " + male + ", liczby " + liczba);
+
+	}
+
+	/*
+	 * Zad 4 Pobieraj od u¿ytkownika napis, dopóki jego d³ugoœæ nie bêdzie
+	 * liczb¹ parzyst¹. Nastêpnie zamieñ miejscami kolejne pary znaków, tak jak
+	 * pokazano to w przyk³adzie: przed -> ABCDEF, po -> BADCFE. Wypisz
+	 * zmodyfikowany napis.
+	 */
+
+	public static void nap04() // ??? :(
+	{
+		String nap = "";
+
+		do
+		{
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Podaj napis");
+			nap = sc.nextLine();
+		} while (nap.length() + 1 % 2 == 0);
+
+		StringBuilder sb = new StringBuilder(nap);
+
+		for (int i = 0; i < sb.length() - 1; i++)
+		{
+			char ch1 = sb.charAt(i);
+			char ch2 = sb.charAt(i + 1);
+			sb.setCharAt(i, ch2);
+			sb.setCharAt(i + 1, ch1);
+		}
+
+		System.out.println(sb.toString());
+	}
+	
+	/*
+
+	/*
+	 * Zad 1 Napisz funkcjê, która przyjmuje jako argument wspó³czynniki
+	 * równania kwadratowego a, b, c i zwraca liczbê miejsc zerowych tego
+	 * równania.
+	 */
+	public static int fun01(double a, double b, double c)
+	{
+		int lMiejscZero = 0;
+		double delta = b * b - (4 * (a * c));
+		if (delta > 0)
+		{
+			lMiejscZero = 2;
+		} else if (delta == 0)
+		{
+			lMiejscZero = 1;
+		} else
+		{
+			lMiejscZero = 0;
+		}
+		return lMiejscZero;
+	}
+
+	/*
+	 * Zad 2 Napisz funkcjê, która przyjmuje jako argument napis i zamienia w
+	 * nim wszystkie du¿e litery na ma³e, a ma³e litery na du¿e. Funkcja zwraca
+	 * tak zmodyfikowany napis.
+	 */
+
+	public static String fun02(String nap)
+	{
+		StringBuilder sb = new StringBuilder(nap);
+		for (int i = 0; i < sb.length(); i++)
+		{
+			if (Character.isUpperCase(sb.charAt(i)))
+			{
+				sb.setCharAt(i, Character.toLowerCase(sb.charAt(i)));
+			}
+		}
+		String nap2 = sb.toString();
+		return nap2;
+	}
+
+	/*
+	 * Zad 3 Napisz funkcjê, która przyjmuje jako argument trzy liczby typu
+	 * double i zwraca najwiêksz¹ z nich.
+	 */
+	public static double fun03(double a, double b, double c)
+	{
+		double[] tab = { a, b, c };
+		double maxV = Arrays.stream(tab).max().getAsDouble();
+
+		return maxV;
+	}
+
+	/*
+	 * Zad 4 Napisz funkcjê, która przyjmuje jako argument trzy liczby typu
+	 * double – boki trójk¹ta i zwraca prawdê, je¿eli jest to trójk¹t
+	 * prostok¹tny lub fa³sz, je¿eli nie jest to trójk¹t prostok¹tny.
+	 */
+
+	public static boolean fun04(double a, double b, double c)
+	{
+		boolean czyProstokatny = false;
+
+		if (a * a + b * b == c * c)
+		{
+			czyProstokatny = true;
+		} else
+		{
+			czyProstokatny = false;
+			return czyProstokatny = false;
+		}
+		if (czyProstokatny == true)
+		{
+			System.out.println("True");
+		} else
+		{
+			System.out.println("False");
+			return czyProstokatny = false;
+		}
+		return false;
+	}
+	
+	
+
+	// ******** WAKACYJNY ZBIOR ZADAN ***
+
+	/*
+	 * Pobierz od u¿ytkownika listê dowolnych marek samochodów. Nastêpnie
+	 * stosuj¹c strumienie zwróæ kolekcjê Set marek, które maj¹ w nazwie
+	 * sk³adaj¹cej siê z samych du¿ych liter co najmniej 3 samog³oski, których
+	 * suma kodów ASCII jest liczb¹ parzyst¹ o nieparzystej cyfrze dziesi¹tek.
+	 */
+	public static void str1()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Podaj liste marek samocodow");
+
+		List<String> marki = new ArrayList<>();
+
+		String marka;
+		for (int i = 0; i < 5; i++)
+		{
+			do
+			{
+				System.out.println("Podaj marke");
+				marka = sc.nextLine();
+			} while (!marka.matches("[A-Z]+"));
+			System.out.println("DODANO MARKE NR " + i);
+			marki.add(marka);
+		}
+
+		Predicate<String> p1 = nap ->
+		{
+			int licz = 0;
+			for (int i = 0; i < nap.length(); i++)
+			{
+				String jedenZnak = String.valueOf(nap.charAt(i));
+				if (jedenZnak.matches("[aeyuioAEYUIO]"))
+				{
+					licz++;
+				}
+			}
+
+			return licz >= 3;
+		};
+
+		Predicate<String> p2 = nap ->
+		{
+			int suma = 0;
+			for (int i = 0; i < nap.length(); i++)
+			{
+				suma += nap.charAt(i);
+			}
+
+			return suma % 2 == 0 && ((suma % 100) / 10) % 2 != 0;
+
+		};
+
+		Set<String> przefiltrowaneMarki = marki.stream().filter(p1.and(p2)).collect(Collectors.toSet());
+		przefiltrowaneMarki.forEach(s ->
+		{
+			System.out.println(s);
+		});
+	}
+
+	/*
+	 * Pobierz od u¿ytkownika listê dowolnych liczb ca³kowitych. Nastêpnie
+	 * stosuj¹c strumienie odrzuæ liczby, których kwadraty s¹ liczb¹ wiêksz¹ od
+	 * 100 i posortuj pozosta³e liczby wed³ug kryterium: najwiêksza liczba to
+	 * ta, która posiada najwiêksz¹ cyfrê dziesi¹tek. Posortowane elementy
+	 * wypisz w konsoli.
+	 */
+
+	public static void str2()
+	{
+		Scanner sc = new Scanner(System.in);
+		List<Integer> lista = new ArrayList<>();
+		for (int i = 0; i < 10; i++)
+		{
+			System.out.println("Podaj liczbe calkowita");
+			lista.add(Integer.parseInt(sc.nextLine()));
+		}
+
+		lista.stream().filter(e ->
+		{
+			return (e * e) > 100;
+		}).sorted((e1, e2) ->
+		{
+			if ((e1 % 100) > (e2 % 100))
+			{
+				return -1;
+			} else
+			{
+				return 1;
+			}
+		}).forEach(e ->
+		{
+			System.out.println(e);
+		});
+	}
+
 	public static void main(String[] args)
 	{
-		tab08();
+		nap04();
 	}
 }
