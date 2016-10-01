@@ -1,3 +1,5 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -7,6 +9,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Main
 
@@ -16,7 +19,7 @@ public class Main
 	public static void pp1(double x)
 	{
 		System.out.println("Zadnie 1 \n");
-		System.out.println("Podaj liczbe rzeczywist¹:");
+		System.out.println("Podaj liczbe rzeczywistÄ…:");
 		Scanner sc = new Scanner(System.in);
 		double x1 = Double.parseDouble(sc.nextLine());
 
@@ -55,15 +58,15 @@ public class Main
 	{
 
 		System.out.println("Zadanie 3 \n");
-		System.out.println("Podaj trzy liczby ca³kwite \nPodaj pierwsz¹ liczbê:");
+		System.out.println("Podaj trzy liczby caÅ‚kwite \nPodaj pierwszÄ… liczbÄ™:");
 		Scanner sc = new Scanner(System.in);
 		List<Double> lista = new ArrayList<>();
 		double liczba1 = Double.parseDouble(sc.nextLine());
 		lista.add(liczba1);
-		System.out.println("Podaj drug¹ liczbê:");
+		System.out.println("Podaj drugÄ… liczbÄ™:");
 		double liczba2 = Double.parseDouble(sc.nextLine());
 		lista.add(liczba2);
-		System.out.println("Podaj trzeci¹ liczbê:");
+		System.out.println("Podaj trzeciÄ… liczbÄ™:");
 		double liczba3 = Double.parseDouble(sc.nextLine());
 		lista.add(liczba3);
 
@@ -90,12 +93,12 @@ public class Main
 
 		/*
 		 * System.out.println("Zadanie 3 \n"); System.out.println(
-		 * "Podaj trzy liczby ca³kwite \nPodaj pierwsz¹ liczbê:"); Scanner sc =
+		 * "Podaj trzy liczby caÅ‚kwite \nPodaj pierwszÄ… liczbÄ™:"); Scanner sc =
 		 * new Scanner(System.in); double liczba1 =
 		 * Double.parseDouble(sc.nextLine()); System.out.println(
-		 * "Podaj drug¹ liczbê:"); double liczba2 =
+		 * "Podaj drugÄ… liczbÄ™:"); double liczba2 =
 		 * Double.parseDouble(sc.nextLine()); System.out.println(
-		 * "Podaj trzeci¹ liczbê:"); double liczba3 =
+		 * "Podaj trzeciÄ… liczbÄ™:"); double liczba3 =
 		 * Double.parseDouble(sc.nextLine()); double minVal = Math.min(liczba1,
 		 * Math.min(liczba2, liczba3)); double maxVal = Math.max(liczba1,
 		 * Math.min(liczba2, liczba3)); double mid = 0; if(liczba1 != minVal &&
@@ -150,11 +153,11 @@ public class Main
 		do
 		{
 			Scanner sc = new Scanner(System.in);
-			System.out.println("Podaj trzy liczby\nPodaj pierwsz¹ liczbê:");
+			System.out.println("Podaj trzy liczby\nPodaj pierwszÄ… liczbÄ™:");
 			a = Integer.parseInt(sc.nextLine());
-			System.out.println("Podaj drug¹ liczbê:");
+			System.out.println("Podaj drugÄ… liczbÄ™:");
 			b = Integer.parseInt(sc.nextLine());
-			System.out.println("Podaj trzeci¹ liczbê:");
+			System.out.println("Podaj trzeciÄ… liczbÄ™:");
 			c = Integer.parseInt(sc.nextLine());
 		} while ((a * b * c) < 10 || ((a < b) && (b < c)));
 
@@ -188,7 +191,7 @@ public class Main
 		do
 		{
 			Scanner sc = new Scanner(System.in);
-			System.out.println("Podaj liczbê:");
+			System.out.println("Podaj liczbÄ™:");
 			a = Integer.parseInt(sc.nextLine());
 			lista.add(a);
 		} while (a < 100);
@@ -205,7 +208,7 @@ public class Main
 			}
 			sumy.add(sum);
 		}
-		System.out.println("Najwiêksza suma cyfr wynosi: " + Collections.max(sumy));
+		System.out.println("NajwiÄ™ksza suma cyfr wynosi: " + Collections.max(sumy));
 		System.out.println("--------------------------------------------------");
 	}
 
@@ -217,9 +220,9 @@ public class Main
 		do
 		{
 			Scanner sc = new Scanner(System.in);
-			System.out.println("Podaj dwie liczby:\nPodaj pierwsz¹:");
+			System.out.println("Podaj dwie liczby:\nPodaj pierwszÄ…:");
 			a = Integer.parseInt(sc.nextLine());
-			System.out.println("Podaj drug¹:");
+			System.out.println("Podaj drugÄ…:");
 			b = Integer.parseInt(sc.nextLine());
 		} while (a > b);
 
@@ -340,7 +343,7 @@ public class Main
 
 		for (int i = 0; i < tab.length; i++)
 		{
-			System.out.println("Podaj " + (i + 1) + "¹ wartoœæ z " + tab.length + "iu");
+			System.out.println("Podaj " + (i + 1) + "Ä… wartoÅ›Ä‡ z " + tab.length + "iu");
 			tab[i] = Double.parseDouble(sc.nextLine());
 		}
 
@@ -401,9 +404,9 @@ public class Main
 	}
 
 	/*
-	 * Pobierz od u¿ytkownika rozmiar oraz elementy tablicy typu int. Oblicz,
-	 * ile w tablicy jest elementów, które s¹ dzielnikami liczby, któr¹
-	 * wczeœniej wylosujesz z przedzia³u <5, 100>.
+	 * Pobierz od uÅ¼ytkownika rozmiar oraz elementy tablicy typu int. Oblicz,
+	 * ile w tablicy jest elementÃ³w, ktÃ³re sÄ… dzielnikami liczby, ktÃ³rÄ…
+	 * wczeÅ›niej wylosujesz z przedziaÅ‚u <5, 100>.
 	 */
 	public static void tab05()
 	{
@@ -415,7 +418,7 @@ public class Main
 
 		for (int i = 0; i < tab.length; i++)
 		{
-			System.out.println("Podaj " + (i + 1) + "¹ wartoœæ z " + tab.length + "iu");
+			System.out.println("Podaj " + (i + 1) + "Ä… wartoÅ›Ä‡ z " + tab.length + "iu");
 			tab[i] = Integer.parseInt(sc.nextLine());
 		}
 
@@ -433,12 +436,12 @@ public class Main
 	}
 
 	/*
-	 * Pobierz od u¿ytkownika rozmiar tablicy i utwórz tablicê elementów typu
-	 * int. Elementy tablicy losujesz z przedzia³u <-10, 20>, je¿eli element
-	 * tablicy znajduje siê pod indeksem parzystym lub z przedzia³u <30,50>,
-	 * je¿eli element tablicy znajduje siê pod indeksem nieparzystym. Oblicz
-	 * sumê elementów tablicy, które dziel¹ siê przez indeks, pod którym siê
-	 * znajduj¹.
+	 * Pobierz od uÅ¼ytkownika rozmiar tablicy i utwÃ³rz tablicÄ™ elementÃ³w typu
+	 * int. Elementy tablicy losujesz z przedziaÅ‚u <-10, 20>, jeÅ¼eli element
+	 * tablicy znajduje siÄ™ pod indeksem parzystym lub z przedziaÅ‚u <30,50>,
+	 * jeÅ¼eli element tablicy znajduje siÄ™ pod indeksem nieparzystym. Oblicz
+	 * sumÄ™ elementÃ³w tablicy, ktÃ³re dzielÄ… siÄ™ przez indeks, pod ktÃ³rym siÄ™
+	 * znajdujÄ….
 	 */
 	public static void tab06()
 	{
@@ -470,9 +473,9 @@ public class Main
 	}
 
 	/*
-	 * Rozmiar oraz elementy tablicy s¹ losowane z przedzia³u <10,30>. Wypisz te
-	 * elementy tablicy, które przy dzieleniu przez 5 daj¹ resztê, która jest
-	 * wiêksza od ostatniej cyfry dzielonego elementu tablicy.
+	 * Rozmiar oraz elementy tablicy sÄ… losowane z przedziaÅ‚u <10,30>. Wypisz te
+	 * elementy tablicy, ktÃ³re przy dzieleniu przez 5 dajÄ… resztÄ™, ktÃ³ra jest
+	 * wiÄ™ksza od ostatniej cyfry dzielonego elementu tablicy.
 	 */
 
 	public static void tab07()
@@ -500,9 +503,9 @@ public class Main
 	}
 
 	/*
-	 * Rozmiar tablicy losowany jest z przedzia³u <4, 10>. Pobieraj od
-	 * u¿ytkownika elementy tablicy dot¹d, dopóki ka¿dy kolejny element tablicy,
-	 * pocz¹wszy od drugiego, nie bêdzie wiêkszy od elementu poprzedniego.
+	 * Rozmiar tablicy losowany jest z przedziaÅ‚u <4, 10>. Pobieraj od
+	 * uÅ¼ytkownika elementy tablicy dotÄ…d, dopÃ³ki kaÅ¼dy kolejny element tablicy,
+	 * poczÄ…wszy od drugiego, nie bÄ™dzie wiÄ™kszy od elementu poprzedniego.
 	 * Wypisz elementy otrzymanej tablicy.
 	 */
 
@@ -534,8 +537,8 @@ public class Main
 	}
 
 	/*
-	 * Rozmiar tablicy losowany jest z przedzia³u <9, 33>. Losuj kolejne
-	 * elementy tablicy z przedzia³u <2, 30> dopóki nie bêd¹ liczb¹ podzieln¹
+	 * Rozmiar tablicy losowany jest z przedziaÅ‚u <9, 33>. Losuj kolejne
+	 * elementy tablicy z przedziaÅ‚u <2, 30> dopÃ³ki nie bÄ™dÄ… liczbÄ… podzielnÄ…
 	 * przez 3.
 	 */
 	public static void tab09()
@@ -556,11 +559,11 @@ public class Main
 	}
 
 	/*
-	 * Rozmiar tablicy pobierany jest od u¿ytkownika. Elementy tablicy s¹
-	 * losowane z przedzia³u <a,b>. Liczby a i b to wartoœci typu int pobierane
-	 * od u¿ytkownika, dopóki nie bêdzie spe³niony warunek a < b. Wypisz z
-	 * tablicy wszystkie te elementy, które posiadaj¹ parzysty indeks i s¹
-	 * podzielne przez wartoœæ wyra¿enia b – a
+	 * Rozmiar tablicy pobierany jest od uÅ¼ytkownika. Elementy tablicy sÄ…
+	 * losowane z przedziaÅ‚u <a,b>. Liczby a i b to wartoÅ›ci typu int pobierane
+	 * od uÅ¼ytkownika, dopÃ³ki nie bÄ™dzie speÅ‚niony warunek a < b. Wypisz z
+	 * tablicy wszystkie te elementy, ktÃ³re posiadajÄ… parzysty indeks i sÄ…
+	 * podzielne przez wartoÅ›Ä‡ wyraÅ¼enia b â€“ a
 	 */
 	public static void tab10()
 	{
@@ -599,14 +602,14 @@ public class Main
 	}
 
 	/*
-	 * Pobieraj od u¿ytkownika napis, dopóki nie bêdzie sk³ada³ siê z samych
-	 * du¿ych liter. PrzeprowadŸ analizê pobranego napisu: a) Zlicz, ile w
-	 * napisie znajduje siê znaków, których kod ASCII posiada nieparzyst¹ cyfrê
-	 * jednoœci b) Oblicz sumê kodów ASCII znaków znajduj¹cych siê na parzystych
-	 * indeksach w napisie. Nastêpnie znajdŸ pierwsz¹ liczbê z przedzia³u <65,
-	 * 90>, która jest dzielnikiem wyznaczonej wczeœniej sumy. Bêdzie to kod
-	 * ASCII jednej z du¿ych liter alfabetu. Zlicz, ile w napisie wystêpuje
-	 * liter wiêkszych od wyznaczonej litery.
+	 * Pobieraj od uÅ¼ytkownika napis, dopÃ³ki nie bÄ™dzie skÅ‚adaÅ‚ siÄ™ z samych
+	 * duÅ¼ych liter. PrzeprowadÅº analizÄ™ pobranego napisu: a) Zlicz, ile w
+	 * napisie znajduje siÄ™ znakÃ³w, ktÃ³rych kod ASCII posiada nieparzystÄ… cyfrÄ™
+	 * jednoÅ›ci b) Oblicz sumÄ™ kodÃ³w ASCII znakÃ³w znajdujÄ…cych siÄ™ na parzystych
+	 * indeksach w napisie. NastÄ™pnie znajdÅº pierwszÄ… liczbÄ™ z przedziaÅ‚u <65,
+	 * 90>, ktÃ³ra jest dzielnikiem wyznaczonej wczeÅ›niej sumy. BÄ™dzie to kod
+	 * ASCII jednej z duÅ¼ych liter alfabetu. Zlicz, ile w napisie wystÄ™puje
+	 * liter wiÄ™kszych od wyznaczonej litery.
 	 */
 
 	public static void nap1()
@@ -660,11 +663,11 @@ public class Main
 	}
 
 	/*
-	 * Zad 2 Pobierz od u¿ytkownika dwa napisy. Wszystkie spó³g³oski z
-	 * pierwszego napisu zast¹p samog³osk¹, która jako pierwsza, pocz¹wszy od
-	 * indeksu o numerze 0, pojawi³a siê w napisie drugim. Je¿eli w drugim
-	 * napisie nie wyst¹pi³a samog³oska wyœwietl komunikat NIEPRAWID£OWE DANE
-	 * WEJŒCIOWE.
+	 * Zad 2 Pobierz od uÅ¼ytkownika dwa napisy. Wszystkie spÃ³Å‚gÅ‚oski z
+	 * pierwszego napisu zastÄ…p samogÅ‚oskÄ…, ktÃ³ra jako pierwsza, poczÄ…wszy od
+	 * indeksu o numerze 0, pojawiÅ‚a siÄ™ w napisie drugim. JeÅ¼eli w drugim
+	 * napisie nie wystÄ…piÅ‚a samogÅ‚oska wyÅ›wietl komunikat NIEPRAWIDÅOWE DANE
+	 * WEJÅšCIOWE.
 	 */
 
 	public static void nap02()
@@ -694,7 +697,7 @@ public class Main
 
 		if (czySamogloska == false)
 		{
-			System.out.println("NIEPRAWID£OWE DANE WEJŒCIOWE");
+			System.out.println("NIEPRAWIDÅOWE DANE WEJÅšCIOWE");
 		}
 
 		System.out.println("samogloska: " + samogloska);
@@ -714,8 +717,8 @@ public class Main
 	}
 
 	/*
-	 * Zad 3 Pobierz od u¿ytkownika napis i wykonaj zestawienie, w którym
-	 * wypiszesz, ile w napisie jest ma³ych liter, du¿ych liter oraz cyfr.
+	 * Zad 3 Pobierz od uÅ¼ytkownika napis i wykonaj zestawienie, w ktÃ³rym
+	 * wypiszesz, ile w napisie jest maÅ‚ych liter, duÅ¼ych liter oraz cyfr.
 	 */
 
 	public static void nap03()
@@ -753,9 +756,9 @@ public class Main
 	}
 
 	/*
-	 * Zad 4 Pobieraj od u¿ytkownika napis, dopóki jego d³ugoœæ nie bêdzie
-	 * liczb¹ parzyst¹. Nastêpnie zamieñ miejscami kolejne pary znaków, tak jak
-	 * pokazano to w przyk³adzie: przed -> ABCDEF, po -> BADCFE. Wypisz
+	 * Zad 4 Pobieraj od uÅ¼ytkownika napis, dopÃ³ki jego dÅ‚ugoÅ›Ä‡ nie bÄ™dzie
+	 * liczbÄ… parzystÄ…. NastÄ™pnie zamieÅ„ miejscami kolejne pary znakÃ³w, tak jak
+	 * pokazano to w przykÅ‚adzie: przed -> ABCDEF, po -> BADCFE. Wypisz
 	 * zmodyfikowany napis.
 	 */
 
@@ -782,13 +785,230 @@ public class Main
 
 		System.out.println(sb.toString());
 	}
-	
-	/*
 
 	/*
-	 * Zad 1 Napisz funkcjê, która przyjmuje jako argument wspó³czynniki
-	 * równania kwadratowego a, b, c i zwraca liczbê miejsc zerowych tego
-	 * równania.
+	 * Zad 5 Pobierz od uÅ¼ytkownika dwa napisy i wygeneruj trzeci napis. Trzeci
+	 * napis zawiera na poczÄ…tku same samogÅ‚oski z napisu pierwszego, a
+	 * nastÄ™pnie same spÃ³Å‚gÅ‚oski z napisu drugiego. PrzykÅ‚ad: napis pierwszy ->
+	 * abcdef, napis drugi -> ghijkl, wynik -> aeghjkl.
+	 */
+
+	public static void nap05()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Podaj dwa napisy:\nPodaj pierwszy:");
+		String nap1 = sc.nextLine();
+		System.out.println("Podaj drugi:");
+		String nap2 = sc.nextLine();
+
+		StringBuilder sb = new StringBuilder();
+
+		for (int i = 0; i < nap1.length(); i++)
+		{
+			char z = Character.toLowerCase(nap1.charAt(i));
+
+			if (z == 'a' || z == 'e' || z == 'i' || z == 'o' || z == 'u' || z == 'y')
+			{
+				sb.append(z);
+			}
+		}
+
+		for (int i = 0; i < nap2.length(); i++)
+		{
+			char z = Character.toLowerCase(nap2.charAt(i));
+
+			if (Character.isLetter(z) && !(z == 'a' || z == 'e' || z == 'i' || z == 'o' || z == 'u' || z == 'y'))
+			{
+				sb.append(z);
+			}
+		}
+
+		System.out.println(sb.toString());
+
+	}
+
+	/*
+	 * Zad 6 Pobierz od uÅ¼ytkownika napis. Kod ASCII wszystkich znakÃ³w, ktÃ³re
+	 * znajdujÄ… siÄ™ pod indeksem parzystym zwiÄ™ksz o 10, natomiast kod ASCII
+	 * pozostaÅ‚ych znakÃ³w zmniejsz o 5. Po tej zmianie oblicz, ile liter
+	 * znajduje siÄ™ w zmodyfikowanym napisie.
+	 */
+
+	public static void nap06()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Podaj napis");
+		String nap1 = sc.nextLine();
+
+		int[] asciiTab = new int[nap1.length()];
+		for (int i = 0; i < asciiTab.length; i++)
+		{
+			if (i % 2 == 0)
+			{
+				asciiTab[i] = nap1.charAt(i) + 10;
+			} else
+			{
+				asciiTab[i] = nap1.charAt(i) - 5;
+			}
+
+		}
+
+		StringBuilder sb = new StringBuilder();
+
+		for (int i = 0; i < asciiTab.length; i++)
+		{
+			sb.append(Character.toString((char) asciiTab[i]));
+		}
+				
+		int licznik = 0;
+		for (int i = 0; i < sb.length(); i++)
+		{
+			if (Character.isLetter(sb.charAt(i)))
+			{
+				licznik++;
+			}
+		}
+		
+		System.out.println("W zmodfikowanym napisie znajduje sie " + licznik + " liter.");
+	}
+
+	/*
+	 * Zad 7 Pobieraj od uÅ¼ytkownika dwa napisy, dopÃ³ki nie bÄ™dÄ… posiadaÅ‚y tej
+	 * samej dÅ‚ugoÅ›ci. NastÄ™pnie wygeneruj trzeci napis, ktÃ³ry bÄ™dzie zawieraÅ‚ w
+	 * sobie na przemian znaki z pierwszego i drugiego napisu. PrzykÅ‚adowo wyraz
+	 * pierwszy ABCD oraz wyraz drugi EFGH dajÄ… wynik AEBFCGDH.
+	 */
+	
+	public static void nap07()
+	{
+		String nap1;
+		String nap2;
+		do
+		{
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Podaj dwa napisy:\nPodaj pierwszy:");
+			nap1 = sc.nextLine();
+			System.out.println("Podaj drugi:");
+			nap2 = sc.nextLine();
+
+		} while (nap1.length() != nap2.length());
+		
+		StringBuilder sb = new StringBuilder();
+		
+		for (int i = 0; i < nap1.length(); i++)
+		{
+				sb.append(nap1.charAt(i));
+				sb.append(nap2.charAt(i));
+		}
+		
+		System.out.println(sb.toString());
+	}
+
+	/*
+	 * Zad 8 Pobierz od uÅ¼ytkownika napis i sprawdÅº, ile wystÄ™puje w nim
+	 * wyrazÃ³w. Zbadaj, ile wyrazÃ³w zaczyna siÄ™ z duÅ¼ej litery oraz ile wyrazÃ³w
+	 * zaczyna siÄ™ z maÅ‚ej litery. Wypisz na ekranie otrzymane wyniki.
+	 */
+	
+	public static void nap08()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Podaj napis");
+		String nap1 = sc.nextLine();
+
+		String[] napTab = nap1.split(" ");
+		
+		int duze = 0;
+		int male = 0;
+		for (int i = 0; i < napTab.length; i++)
+		{
+			if (Character.isUpperCase(napTab[i].charAt(0)))
+			{
+				duze++;
+			}
+			else if (Character.isLowerCase(napTab[i].charAt(0)))
+			{
+				male++;
+			}
+		}
+		
+		System.out.println(duze + " wyrazy zaczyaja sie od wielkiej litery a " + male + " mala.");
+		
+		
+		/*for (String string : napTab)
+		{
+			System.out.println(string + "\n");
+		}*/
+	}
+
+	/*
+	 * Zad 9 Pobierz od uÅ¼ytkownika napis i powiel w nim n razy wszystkie
+	 * wystÄ…pienia znaku podanego przez uÅ¼ytkownika, gdzie n to liczba pobrana
+	 * przez uÅ¼ytkownika. PrzykÅ‚ad: Wyraz: abecadlo, n = 3, znak od uÅ¼ytkownika
+	 * = a wynik: aaabecaaadlo
+	 */
+	
+	public static void nap09()
+	{
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Podaj napis");
+		String nap1 = sc.nextLine();
+		String x = "";
+		do
+		{
+			System.out.println("Podaj litere:");
+			x = sc.nextLine();
+		} while (x.length() != 1);
+		System.out.println("Podaj cyfre:");
+		int n = Integer.parseInt(sc.nextLine());
+		char z = x.charAt(0);
+		
+		
+		
+		StringBuilder sb = new StringBuilder(nap1);
+		
+		for (int i = 0; i < sb.length(); i++)
+		{
+			//char h = Character.toLowerCase(sb.toString().charAt(i));
+			if (sb.toString().charAt(i) == z)
+			{
+				
+			}
+		}
+		
+		System.err.println(sb.toString());
+		
+		
+		
+		
+		
+	}
+
+	/*
+	 * Zad 10 Pobieraj od uÅ¼ytkownika napis, dopÃ³ki nie bÄ™dzie zawieraÅ‚
+	 * poprawnie zapisanej liczby. ZakÅ‚adamy, Å¼e poprawnie zapisana liczba to
+	 * taka, do ktÃ³rej zapisu uÅ¼yto â€zwykÅ‚egoâ€ zapisu lub notacji naukowej.
+	 * PrzykÅ‚ady poprawnie zapisanych liczb: 2.4, -12.45, 10E12, -5.45E9, 8E-3,
+	 * 23.34e10, 24.3e-5.
+	 */
+	
+	public static void nap10()
+	{
+		String nap;
+		
+		do
+		{
+			Scanner sc = new Scanner(System.in);
+			System.out.println("Podaj napis w notacji naukowej.");
+			nap = sc.nextLine();
+		} while (!nap.matches("-?[0-9]+[E]?-?[//.]?[0-9]*[Ee]?-?[0-9]*"));
+		
+	}
+
+	/*
+	 * Zad 1 Napisz funkcjÄ™, ktÃ³ra przyjmuje jako argument wspÃ³Å‚czynniki
+	 * rÃ³wnania kwadratowego a, b, c i zwraca liczbÄ™ miejsc zerowych tego
+	 * rÃ³wnania.
 	 */
 	public static int fun01(double a, double b, double c)
 	{
@@ -808,8 +1028,8 @@ public class Main
 	}
 
 	/*
-	 * Zad 2 Napisz funkcjê, która przyjmuje jako argument napis i zamienia w
-	 * nim wszystkie du¿e litery na ma³e, a ma³e litery na du¿e. Funkcja zwraca
+	 * Zad 2 Napisz funkcjÄ™, ktÃ³ra przyjmuje jako argument napis i zamienia w
+	 * nim wszystkie duÅ¼e litery na maÅ‚e, a maÅ‚e litery na duÅ¼e. Funkcja zwraca
 	 * tak zmodyfikowany napis.
 	 */
 
@@ -828,8 +1048,8 @@ public class Main
 	}
 
 	/*
-	 * Zad 3 Napisz funkcjê, która przyjmuje jako argument trzy liczby typu
-	 * double i zwraca najwiêksz¹ z nich.
+	 * Zad 3 Napisz funkcjÄ™, ktÃ³ra przyjmuje jako argument trzy liczby typu
+	 * double i zwraca najwiÄ™kszÄ… z nich.
 	 */
 	public static double fun03(double a, double b, double c)
 	{
@@ -840,9 +1060,9 @@ public class Main
 	}
 
 	/*
-	 * Zad 4 Napisz funkcjê, która przyjmuje jako argument trzy liczby typu
-	 * double – boki trójk¹ta i zwraca prawdê, je¿eli jest to trójk¹t
-	 * prostok¹tny lub fa³sz, je¿eli nie jest to trójk¹t prostok¹tny.
+	 * Zad 4 Napisz funkcjÄ™, ktÃ³ra przyjmuje jako argument trzy liczby typu
+	 * double â€“ boki trÃ³jkÄ…ta i zwraca prawdÄ™, jeÅ¼eli jest to trÃ³jkÄ…t
+	 * prostokÄ…tny lub faÅ‚sz, jeÅ¼eli nie jest to trÃ³jkÄ…t prostokÄ…tny.
 	 */
 
 	public static boolean fun04(double a, double b, double c)
@@ -867,16 +1087,192 @@ public class Main
 		}
 		return false;
 	}
-	
-	
-
-	// ******** WAKACYJNY ZBIOR ZADAN ***
 
 	/*
-	 * Pobierz od u¿ytkownika listê dowolnych marek samochodów. Nastêpnie
-	 * stosuj¹c strumienie zwróæ kolekcjê Set marek, które maj¹ w nazwie
-	 * sk³adaj¹cej siê z samych du¿ych liter co najmniej 3 samog³oski, których
-	 * suma kodów ASCII jest liczb¹ parzyst¹ o nieparzystej cyfrze dziesi¹tek.
+	 * Napisz funkcjÄ™, ktÃ³ra przyjmuje dwie liczby typu int a i b. Funkcja
+	 * zwraca sumÄ™ liczb z przedziaÅ‚u <a,b>.
+	 */
+	public static int fun05(int a, int b)
+	{
+		int sum = 0;
+
+		for (int i = a; i <= b; i++)
+		{
+			sum += i;
+		}
+
+		return sum;
+	}
+
+	// Napisz funkcjeÌ¨, ktoÌra przyjmuje tabliceÌ¨ elementoÌw typu int
+	// oraz liczbeÌ¨ typu int â€“ zmienna a. Funkcja zwraca,
+	// ile w tablicy jest elementoÌw wieÌ¨kszych od podanej liczby.
+
+	public static int fun06(int[] tab, int a)
+	{
+		int licznik = 0;
+
+		for (int i = 0; i < tab.length; i++)
+		{
+			if (tab[i] > a)
+			{
+				licznik++;
+			}
+		}
+		return licznik;
+	}
+
+	// Napisz funkcjeÌ¨, ktoÌra pobiera jako argument tabliceÌ¨ elementoÌw typu
+	// int
+	// i zwraca trzeci co do wielkosÌci element tablicy.
+	// POPRAWIC
+	// NIE ZADZIALA DLA 1 1 1 2 2 2 4 4 4
+	public static int fun07(int[] tab)
+	{
+		int[] dis = IntStream.of(tab).distinct().sorted().toArray();
+
+		if (dis.length >= 3)
+		{
+			return dis[dis.length - 3];
+		} else
+		{
+			return dis[0]; // zeby nie zwracac czegos innego niz jest w tablicy
+							// umawiamy sie ze jak nie ma trzeciego co do
+			// wielkosci elementu to zwraca element drugi lub pierwszy co do
+			// wielkosci
+		}
+
+	}
+
+	// Napisz funkcjeÌ¨, ktoÌra jako argument przyjmuje dwa napisy
+	// i zwraca napis o wieÌ¨kszej liczbie spoÌÅ‚gÅ‚osek.
+
+	public static String fun08(String nap1, String nap2)
+	{
+
+		int licznik1 = 0;
+
+		for (int i = 0; i < nap1.length(); i++)
+		{
+			char z = Character.toLowerCase(nap1.charAt(i));
+
+			if (Character.isLetter(z) && !(z == 'a' || z == 'e' || z == 'i' || z == 'o' || z == 'u' || z == 'y'))
+			{
+				licznik1++;
+			}
+		}
+
+		int licznik2 = 0;
+
+		for (int i = 0; i < nap2.length(); i++)
+		{
+			char z = Character.toLowerCase(nap2.charAt(i));
+
+			if (Character.isLetter(z) && !(z == 'a' || z == 'e' || z == 'i' || z == 'o' || z == 'u' || z == 'y'))
+			{
+				licznik2++;
+			}
+		}
+
+		if (licznik1 > licznik2)
+		{
+			return nap1;
+		} else if (licznik2 > licznik1)
+		{
+			return nap2;
+		} else
+		{
+			return "Rowne";
+		}
+
+	}
+
+	/*
+	 * Zad 9 Napisz funkcjÄ™, ktÃ³ra przyjmuje jako argument napis oraz dwie
+	 * liczby typu int a i b. Funkcja zwraca napis utworzony ze znakÃ³w napisu
+	 * podanego jako argument o indeksach z przedziaÅ‚u <a,b>.
+	 */
+
+	public static String fun09(String nap, int a, int b)
+	{
+		String nap2 = "";
+		if (b <= nap.length() && !(a < 0) && b > a)
+		{
+			nap2 = nap.substring(a, b + 1);
+		}
+		return nap2;
+	}
+
+	/*
+	 * Zad 10 Funkcja przyjmuje jako argument dwie tablice elementÃ³w typu int o
+	 * dowolnych rozmiarach i zwraca najwiÄ™kszy element tablicy, ktÃ³rej Å›rednia
+	 * arytmetyczna jest wiÄ™ksza
+	 */
+
+	public static int fun10(int[] tab1, int[] tab2)
+	{
+
+		if (Arrays.stream(tab1).average().getAsDouble() > Arrays.stream(tab2).average().getAsDouble())
+		{
+			return Arrays.stream(tab1).max().getAsInt();
+		} else if (Arrays.stream(tab1).average().getAsDouble() < Arrays.stream(tab2).average().getAsDouble())
+		{
+			return Arrays.stream(tab2).max().getAsInt();
+		} else
+		{
+			return 0;
+		}
+	}
+	
+/*	Zad 1
+	Plik tekstowy â€˜tablica.txtâ€™ ma postaÄ‡:
+	8 3 2 1 4 3 2
+	Pobierz liczby z pliku tekstowego do tablicy i wypisz na ekranie sumÄ™
+	elementÃ³w tej tablicy.*/
+	
+	public static void text01() throws FileNotFoundException
+	{
+		String path = "C:\\Users\\Korczi\\workspace\\H16_WakacyjnyZbiorZadan_1\\tablica.txt";
+		File textFile = new File(path);
+		Scanner sc = new Scanner(textFile);
+		ArrayList<Integer> valArr = new ArrayList<>();
+		while (sc.hasNextInt())
+		{
+			valArr.add(sc.nextInt());
+		};
+		
+		int sum = valArr.stream().mapToInt(v -> v.intValue()).sum();
+		System.out.println(valArr + "\n" + sum);
+	}
+	
+	/*Zad 2
+	Plik tekstowy â€˜tablicaDwa.txtâ€™ ma postaÄ‡:
+	3 4
+	1 2 3 4
+	5 6 7 8
+	9 0 1 2
+	Pierwsza linia w pliku tekstowym to informacje o iloÅ›ci odpowiednio
+	wierszy i kolumn tablicy dwuwymiarowej. Kolejne wiersze w pliku to
+	kolejne wiersze tablicy dwuwymiarowej. Pobierz z pliku tekstowego dane
+	do tablicy dwuwymiarowej i wyznacz kolumnÄ™ o najwiÄ™kszej sumie
+	elementÃ³w.*/
+	
+	public static void text02() throws FileNotFoundException
+	{
+		String path = "C:\\Users\\Korczi\\workspace\\H16_WakacyjnyZbiorZadan_1\\tablicaDwa.txt";
+		File textFile = new File(path);
+		Scanner sc = new Scanner(textFile);
+		
+		
+	}
+
+	// ******** WAKACYJNY ZBIOR ZADAN 2***
+
+	/*
+	 * Pobierz od uÅ¼ytkownika listÄ™ dowolnych marek samochodÃ³w. NastÄ™pnie
+	 * stosujÄ…c strumienie zwrÃ³Ä‡ kolekcjÄ™ Set marek, ktÃ³re majÄ… w nazwie
+	 * skÅ‚adajÄ…cej siÄ™ z samych duÅ¼ych liter co najmniej 3 samogÅ‚oski, ktÃ³rych
+	 * suma kodÃ³w ASCII jest liczbÄ… parzystÄ… o niepa rzystej cyfrze dziesiÄ…tek.
 	 */
 	public static void str1()
 	{
@@ -932,10 +1328,10 @@ public class Main
 	}
 
 	/*
-	 * Pobierz od u¿ytkownika listê dowolnych liczb ca³kowitych. Nastêpnie
-	 * stosuj¹c strumienie odrzuæ liczby, których kwadraty s¹ liczb¹ wiêksz¹ od
-	 * 100 i posortuj pozosta³e liczby wed³ug kryterium: najwiêksza liczba to
-	 * ta, która posiada najwiêksz¹ cyfrê dziesi¹tek. Posortowane elementy
+	 * Pobierz od uÅ¼ytkownika listÄ™ dowolnych liczb caÅ‚kowitych. NastÄ™pnie
+	 * stosujÄ…c strumienie odrzuÄ‡ liczby, ktÃ³rych kwadraty sÄ… liczbÄ… wiÄ™kszÄ… od
+	 * 100 i posortuj pozostaÅ‚e liczby wedÅ‚ug kryterium: najwiÄ™ksza liczba to
+	 * ta, ktÃ³ra posiada najwiÄ™kszÄ… cyfrÄ™ dziesiÄ…tek. Posortowane elementy
 	 * wypisz w konsoli.
 	 */
 
@@ -969,6 +1365,17 @@ public class Main
 
 	public static void main(String[] args)
 	{
-		nap04();
+		nap10();
+		
+		
+		/*try
+		{
+			text01();
+		} catch (FileNotFoundException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 	}
+	
 }
