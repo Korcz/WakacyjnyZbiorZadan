@@ -1,5 +1,11 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -839,6 +845,11 @@ public class Main
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Podaj napis");
 		String nap1 = sc.nextLine();
+		/*
+		 * char[] tab = nap1.toCharArray(); for (int i = 0; i < tab.length; i++)
+		 * { if (i % 2 == 0) { tab[i] = (char)(nap1.charAt(i) + 10); } else {
+		 * tab[i] = (char)(nap1.charAt(i) - 5); } }
+		 */
 
 		int[] asciiTab = new int[nap1.length()];
 		for (int i = 0; i < asciiTab.length; i++)
@@ -859,7 +870,7 @@ public class Main
 		{
 			sb.append(Character.toString((char) asciiTab[i]));
 		}
-				
+
 		int licznik = 0;
 		for (int i = 0; i < sb.length(); i++)
 		{
@@ -868,7 +879,7 @@ public class Main
 				licznik++;
 			}
 		}
-		
+
 		System.out.println("W zmodfikowanym napisie znajduje sie " + licznik + " liter.");
 	}
 
@@ -878,7 +889,7 @@ public class Main
 	 * sobie na przemian znaki z pierwszego i drugiego napisu. Przykładowo wyraz
 	 * pierwszy ABCD oraz wyraz drugi EFGH dają wynik AEBFCGDH.
 	 */
-	
+
 	public static void nap07()
 	{
 		String nap1;
@@ -892,15 +903,15 @@ public class Main
 			nap2 = sc.nextLine();
 
 		} while (nap1.length() != nap2.length());
-		
+
 		StringBuilder sb = new StringBuilder();
-		
+
 		for (int i = 0; i < nap1.length(); i++)
 		{
-				sb.append(nap1.charAt(i));
-				sb.append(nap2.charAt(i));
+			sb.append(nap1.charAt(i));
+			sb.append(nap2.charAt(i));
 		}
-		
+
 		System.out.println(sb.toString());
 	}
 
@@ -909,7 +920,7 @@ public class Main
 	 * wyrazów. Zbadaj, ile wyrazów zaczyna się z dużej litery oraz ile wyrazów
 	 * zaczyna się z małej litery. Wypisz na ekranie otrzymane wyniki.
 	 */
-	
+
 	public static void nap08()
 	{
 		Scanner sc = new Scanner(System.in);
@@ -917,7 +928,7 @@ public class Main
 		String nap1 = sc.nextLine();
 
 		String[] napTab = nap1.split(" ");
-		
+
 		int duze = 0;
 		int male = 0;
 		for (int i = 0; i < napTab.length; i++)
@@ -925,20 +936,17 @@ public class Main
 			if (Character.isUpperCase(napTab[i].charAt(0)))
 			{
 				duze++;
-			}
-			else if (Character.isLowerCase(napTab[i].charAt(0)))
+			} else if (Character.isLowerCase(napTab[i].charAt(0)))
 			{
 				male++;
 			}
 		}
-		
+
 		System.out.println(duze + " wyrazy zaczyaja sie od wielkiej litery a " + male + " mala.");
-		
-		
-		/*for (String string : napTab)
-		{
-			System.out.println(string + "\n");
-		}*/
+
+		/*
+		 * for (String string : napTab) { System.out.println(string + "\n"); }
+		 */
 	}
 
 	/*
@@ -947,41 +955,37 @@ public class Main
 	 * przez użytkownika. Przykład: Wyraz: abecadlo, n = 3, znak od użytkownika
 	 * = a wynik: aaabecaaadlo
 	 */
-	
+
 	public static void nap09()
 	{
 		Scanner sc = new Scanner(System.in);
+
 		System.out.println("Podaj napis");
 		String nap1 = sc.nextLine();
-		String x = "";
-		do
-		{
-			System.out.println("Podaj litere:");
-			x = sc.nextLine();
-		} while (x.length() != 1);
+
+		System.out.println("Podaj litere:");
+		char z = sc.nextLine().charAt(0);
+
 		System.out.println("Podaj cyfre:");
 		int n = Integer.parseInt(sc.nextLine());
-		char z = x.charAt(0);
-		
-		
-		
-		StringBuilder sb = new StringBuilder(nap1);
-		
-		for (int i = 0; i < sb.length(); i++)
+
+		StringBuilder sb = new StringBuilder();
+
+		for (int i = 0; i < nap1.length(); i++)
 		{
-			//char h = Character.toLowerCase(sb.toString().charAt(i));
-			if (sb.toString().charAt(i) == z)
+			if (nap1.charAt(i) == z)
 			{
-				
+				for (int j = 0; j < n; j++)
+				{
+					sb.append(z);
+				}
+			} else
+			{
+				sb.append(nap1.charAt(0));
 			}
 		}
-		
+
 		System.err.println(sb.toString());
-		
-		
-		
-		
-		
 	}
 
 	/*
@@ -991,18 +995,18 @@ public class Main
 	 * Przykłady poprawnie zapisanych liczb: 2.4, -12.45, 10E12, -5.45E9, 8E-3,
 	 * 23.34e10, 24.3e-5.
 	 */
-	
+
 	public static void nap10()
 	{
 		String nap;
-		
+
 		do
 		{
 			Scanner sc = new Scanner(System.in);
 			System.out.println("Podaj napis w notacji naukowej.");
 			nap = sc.nextLine();
 		} while (!nap.matches("-?[0-9]+[E]?-?[//.]?[0-9]*[Ee]?-?[0-9]*"));
-		
+
 	}
 
 	/*
@@ -1223,13 +1227,13 @@ public class Main
 			return 0;
 		}
 	}
-	
-/*	Zad 1
-	Plik tekstowy ‘tablica.txt’ ma postać:
-	8 3 2 1 4 3 2
-	Pobierz liczby z pliku tekstowego do tablicy i wypisz na ekranie sumę
-	elementów tej tablicy.*/
-	
+
+	/*
+	 * Zad 1 Plik tekstowy ‘tablica.txt’ ma postać: 8 3 2 1 4 3 2 Pobierz liczby
+	 * z pliku tekstowego do tablicy i wypisz na ekranie sumę elementów tej
+	 * tablicy.
+	 */
+
 	public static void text01() throws FileNotFoundException
 	{
 		String path = "C:\\Users\\Korczi\\workspace\\H16_WakacyjnyZbiorZadan_1\\tablica.txt";
@@ -1239,31 +1243,313 @@ public class Main
 		while (sc.hasNextInt())
 		{
 			valArr.add(sc.nextInt());
-		};
-		
-		int sum = valArr.stream().mapToInt(v -> v.intValue()).sum();
+		}
+
+		// int sum = valArr.stream().mapToInt(v -> v.intValue()).sum();
+
+		long sum = valArr.stream().collect(Collectors.summarizingInt(e -> e)).getSum();
 		System.out.println(valArr + "\n" + sum);
 	}
-	
-	/*Zad 2
-	Plik tekstowy ‘tablicaDwa.txt’ ma postać:
-	3 4
-	1 2 3 4
-	5 6 7 8
-	9 0 1 2
-	Pierwsza linia w pliku tekstowym to informacje o ilości odpowiednio
-	wierszy i kolumn tablicy dwuwymiarowej. Kolejne wiersze w pliku to
-	kolejne wiersze tablicy dwuwymiarowej. Pobierz z pliku tekstowego dane
-	do tablicy dwuwymiarowej i wyznacz kolumnę o największej sumie
-	elementów.*/
-	
+
+	/*
+	 * Zad 2 Plik tekstowy ‘tablicaDwa.txt’ ma postać: 3 4 1 2 3 4 5 6 7 8 9 0 1
+	 * 2 Pierwsza linia w pliku tekstowym to informacje o ilości odpowiednio
+	 * wierszy i kolumn tablicy dwuwymiarowej. Kolejne wiersze w pliku to
+	 * kolejne wiersze tablicy dwuwymiarowej. Pobierz z pliku tekstowego dane do
+	 * tablicy dwuwymiarowej i wyznacz kolumnę o największej sumie elementów.
+	 */
+
 	public static void text02() throws FileNotFoundException
 	{
 		String path = "C:\\Users\\Korczi\\workspace\\H16_WakacyjnyZbiorZadan_1\\tablicaDwa.txt";
 		File textFile = new File(path);
+		// FileReader fr =
 		Scanner sc = new Scanner(textFile);
+
+		int w = sc.nextInt();
+		int k = sc.nextInt();
+
+		int[][] tab = new int[w][k];
+
+		for (int i = 0; i < tab.length; i++)
+		{
+			for (int j = 0; j < tab[i].length; j++)
+			{
+				tab[i][j] = sc.nextInt();
+			}
+		}
+
+		sc.close();
+
+		int sum = 0;
+		int maxSum = 0;
+		int maxIdx = 0;
+
+		for (int j = 0; j < k; j++)
+		{
+			sum = 0;
+			for (int i = 0; i < w; i++)
+			{
+				sum += tab[i][j];
+			}
+			if (sum > maxSum)
+			{
+				maxSum = sum;
+				maxIdx = j;
+			}
+		}
+
+		System.out.println("Kolumna o najwiekszej sumiw to: " + maxIdx);
+	}
+
+	/*
+	 * Zad 3 Plik tekstowy ‘dane.txt’ ma postać: 3;8;4;5;3;2 3 4 5 1 2 3
+	 * 9;8;3;2;3;4 9 8 9 7 8 1 Pobierz z pliku tekstowego kolejne wiersze liczb
+	 * i wypisz na ekranie numer wiersza, w którym występuje najwięcej elementów
+	 * parzystych.
+	 */
+
+	public static void text03() throws FileNotFoundException
+	{
+		String path = "C:\\Users\\Korczi\\workspace\\H16_WakacyjnyZbiorZadan_1\\dane.txt";
+		File file = new File(path);
+
+		Scanner sc = new Scanner(file);
+
+		int maxIdx = 0;
+		int licznik = 0;
+		int nrWiersza = 0;
+		int maxLicznik = 0;
+		while (sc.hasNextLine())
+		{
+			String[] napt = sc.nextLine().split("[; ]");
+			int[] liczby = new int[napt.length];
+			for (int i = 0; i < liczby.length; i++)
+			{
+				liczby[i] = Integer.parseInt(napt[i]);
+			}
+
+			for (int i = 0; i < liczby.length; i++)
+			{
+				if (liczby[i] % 2 == 0)
+				{
+					licznik++;
+				}
+
+			}
+
+			System.out.println("LICZNIK = " + licznik);
+			if (licznik > maxLicznik)
+			{
+				maxLicznik = licznik;
+				maxIdx = nrWiersza;
+			}
+			nrWiersza++;
+			licznik = 0;
+
+		}
+
+		System.out.println("Nume wiersz: " + maxIdx);
+	}
+
+	/*
+	 * Zad 4 Plik tekstowy ‘napisy.txt’ ma postać: napis1 napis2 napis3 napis4
+	 * 
+	 * 
+	 * … Każdy napis jest dowolny i wpiszesz go podczas tworzenia pliku
+	 * tekstowego. Trzy kropki symbolizują, że możesz utworzyć plik o dowolnej
+	 * liczbie napisów. Pobierz dane z pliku tekstowego i zlicz, ile jest w nim
+	 * słów, które są: a) palindromami, b) anagramami słowa podanego wcześniej
+	 * przez użytkownika, c) słowami o parzystej liczbie samogłosek
+	 */
+
+	public static void text04() throws FileNotFoundException
+	{
+		String path = "C:\\Users\\Korczi\\workspace\\H16_WakacyjnyZbiorZadan_1\\napisy2.txt";
+		File file = new File(path);
+
+		Scanner sc = new Scanner(file);
+
+		// a)
+		int ilePalindrom = 0;
+		while (sc.hasNextLine())
+		{
+			String nap = sc.nextLine();
+			// sprawdzasz kolejne wlasnosci czy zachodza
+			// a
+
+			if (nap.length() % 2 == 0)
+			{
+				for (int i = 0; i < nap.length() / 2; i++)
+				{
+					if (nap.charAt(i) != nap.charAt(nap.length() - (i + 1)))
+					{
+						break;
+					} else
+					{
+						ilePalindrom++;
+					}
+				}
+			}
+
+		}
+		System.out.println(ilePalindrom);
+	}
+
+	/*
+	 * Zad 5 Plik tekstowy ‘napisy.txt’ posiada strukturę jak poniżej: napis1;
+	 * napis2; napis3 napis4; napis5; napis6 napis7; napis8; napis9 Każdy napis
+	 * jest dowolny i wpiszesz go podczas tworzenia pliku tekstowego. Trzy
+	 * kropki symbolizują, że możesz utworzyć plik o dowolnej liczbie wierszy.
+	 * Pobierz napisy z pliku tekstowego i oblicz, ile jest w pliku wierszy,
+	 * które zawierają w sobie co najmniej dwa napisy składające się z samych
+	 * dużych liter.
+	 */
+
+	public static void text05() throws FileNotFoundException
+	{
+		String path = "C:\\Users\\Korczi\\workspace\\H16_WakacyjnyZbiorZadan_1\\napisy.txt";
+		File file = new File(path);
+
+		Scanner sc = new Scanner(file);
+
+		int licznik = 0;
+		int nrWiersza = 0;
+		boolean czyWielka = true;
+		int licznikWielki = 0;
+		while (sc.hasNextLine())
+		{
+			String[] napTab = sc.nextLine().split("; ");
+			for (int i = 0; i < napTab.length; i++)
+			{
+				czyWielka = true;
+				for (int j = 0; j < napTab[i].length(); j++)
+				{
+					if (!Character.isUpperCase(napTab[i].charAt(j)))
+					{
+						czyWielka = false;
+						break;
+					}
+				}
+
+				if (czyWielka == true)
+				{
+					licznik++;
+				}
+
+			}
+
+			if (licznik >= 2)
+			{
+				licznikWielki++;
+				// System.out.println(nrWiersza);
+			}
+			nrWiersza++;
+			licznik = 0;
+		}
+
+		System.out.println("Liczba wierszy, które zawierają w sobie co najmniej "
+				+ "dwa napisy składające się z samych dużych liter: " + licznikWielki);
+	}
+
+	/*
+	 * Zad 6 Plik tekstowy o nazwie ‘osoby.txt’ ma postać:
+	 * Imie1,Nazwisko1,Pensja1 Imie2,Nazwisko2,Pensja2 … Imię, nazwisko oraz
+	 * pensję podajesz dowolnie podczas tworzenia pliku tekstowego. Trzy kropki
+	 * symbolizują, że możesz utworzyć plik o dowolnej liczbie wierszy. Oblicz
+	 * średnią arytmetyczną pensji wszystkich pracowników. Wypisz na ekranie
+	 * imię i nazwisko pracownika o największej pensji.
+	 */
+
+	public static void text06() throws FileNotFoundException
+	{
+		String path = "C:\\Users\\Korczi\\workspace\\H16_WakacyjnyZbiorZadan_1\\osoby.txt";
+		File file = new File(path);
+		Scanner sc = new Scanner(file);
+
+		int total = 0;
+		int licznik = 0;
+		double max = 0;
+		int idx = 0;
+		boolean foundDouble = false;
+		while (sc.hasNextLine())
+		{
+			String[] strTab = sc.nextLine().split(",");
+
+			for (String str : strTab)
+			{
+				try
+				{
+					double num = Double.parseDouble(str);
+					total += num;
+					foundDouble = true;
+					licznik++;
+					
+					if (num > max)
+					{
+						max = num;
+					}
+				} catch (NumberFormatException nfe)
+				{
+				}
+				; // word is not an integer, do nothing
+			}
+		}
+		System.out.println("licznik " + licznik);
+		if (!foundDouble)
+		{
+			System.out.println("No numbers found.");
+		} else
+		{
+			System.out.println("Avg: " + total / licznik);
+		}
 		
-		
+		System.out.println("max: " + max);
+
+	}
+
+	/*
+	 * Zad 10 Wygeneruj 100 liczb losowych z przedziału <20, 45> i zapisz je do
+	 * pliku tekstowego ‘liczby.txt’ w postaci liczba1;liczba2;liczba3;… .
+	 * Następnie pobierz zawartość pliku ‘liczby.txt’ i oblicz odchylenie
+	 * standardowe pobranych liczb.
+	 */
+	public static void text10() throws IOException
+	{
+		String path = "C:\\Users\\Korczi\\workspace\\H16_WakacyjnyZbiorZadan_1\\liczby.txt";
+		Random rnd = new Random();
+		Writer wr = new FileWriter(path);
+
+		for (int i = 0; i < 100; i++)
+		{
+			int a = 20 + rnd.nextInt(26);
+			wr.write(new Integer(a).toString() + ";");
+		}
+		wr.close();
+
+		File file = new File(path);
+		Scanner sc = new Scanner(file);
+
+		while (sc.hasNextLine())
+		{
+			String[] napt = sc.nextLine().split(";");
+			int[] liczby = new int[napt.length];
+			for (int i = 0; i < liczby.length; i++)
+			{
+				liczby[i] = Integer.parseInt(napt[i]);
+			}
+
+			double avg = Arrays.stream(liczby).average().getAsDouble();
+			double wariancja = 0;
+			for (int i = 0; i < liczby.length; i++)
+			{
+				wariancja += ((liczby[i] - avg) * (liczby[i] - avg)) / 100;
+			}
+
+			double odchylenie = Math.sqrt(wariancja);
+			System.out.println("Odchylenie standardowe wynosi: " + odchylenie);
+		}
+
 	}
 
 	// ******** WAKACYJNY ZBIOR ZADAN 2***
@@ -1365,17 +1651,35 @@ public class Main
 
 	public static void main(String[] args)
 	{
-		nap10();
+
+		Kolo k1 = new Kolo(2.6);
+		System.out.println(k1.toString());
+
+		Prostokat p1 = new Prostokat(3, 2);
+		System.out.println(p1.toString());
+
+		Pralka pr1 = new Pralka("p1", 100, 1, 52);
+		System.out.println(pr1.toString());
 		
+		Skladnik sk1 = new Skladnik("aSDaaaS", -76, 197);
+		System.out.println(sk1.toString());
 		
-		/*try
+		Skladnik sk2 = new Skladnik();
+		System.out.println(sk2.toString());
+
+		try
 		{
-			text01();
+			text06();
 		} catch (FileNotFoundException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}*/
+		}
+
+		/*
+		 * try { text01(); } catch (FileNotFoundException e) { // TODO
+		 * Auto-generated catch block e.printStackTrace(); }
+		 */
 	}
-	
-}
+
+}// ctr + Q
